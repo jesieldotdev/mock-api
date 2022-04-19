@@ -1,0 +1,9 @@
+body {
+  background-image: url("{{ url_for('static', filename='img/bg.jpg') }}");
+/*   background-repeat: no-repeat;
+  background-attachment: fixed; */
+}
+
+h3{
+	color: blueviolet;
+}
