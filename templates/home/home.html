@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Testando Mock{% endblock %}
+
+{% block content %}
+
+
+
+<h3 class="text-center  ">
+	<strong>Flask + MockAPI + Bootstrap</strong>
+</h3>
+
+<header class="pb-3 mt-3">
+	<div class="justify-content-center d-flex w-100">
+		<img class="w-25" src="{{url_for('static', filename='img/crud-8.png')}}">
+	</div>
+</header>
+<hr>
+	<header class="d-flex  p-5">
+	<p class="text-left p-3">Ola! Aqui estão alguns usuários cadastrados recentemente.</p>
+	<a href="{{url_for('pagina_add')}}"><button class="btn btn-primary justify-content-end" >Adicionar Usuário</button></a>	
+	
+</header>
+	
+	
+
+
+<div class="container">
+  <div class="row">
+		{% for key in data %}
+    <div class="col-lg-4 col-md-12">
+    	<div style="background-color: #efadff;" class="card  text-dark shadow-5 m-2">
+		  <div class="card-body">
+		    <i class="card-title">{{ key.id}}</i>
+		    <h5 class="card-title">{{ key.name}}</h5>
+		     <p class="card-text">{{ key.email}}</p>
+		    <p class="card-text">{{ key.idade}} anos</p>
+
+		    <a href="{{ url_for('perfil', perfil_id = key.id) }}"><button type="button" class="btn btn-primary">Perfil</button></a>
+		    <a href="{{ url_for('delete_user', user_id = key.id) }}"><button class="btn btn-danger justify-content-end" >Excluir</button></a>
+		  </div>
+		  <!-- <div class="card-footer">{{ key.createdAt}}</div> -->
+		</div>
+    </div>
+		{% endfor %}
+  </div>
+</div>
+
+
+
+	
+
+
+{% endblock %}

@@ -79,7 +79,14 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->
-<div class="m-5 p-5"></div>
+<div class="p-5"></div>
+{% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category,message in messages %}
+            <div class='alert alert-{{category}} mb-0 fixed-bottom'>{{message}}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
 	{% block content %} 
 	{% endblock %}
 
