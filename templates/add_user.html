@@ -11,15 +11,22 @@
 	<img class=" img-fluid" src="{{url_for('static', filename='img/crud-8.png')}}">
 	<h3 class="text-left mt-5">Adicionar Usuário</h3>
 	<div>
-		<label class="col-form-label" for="nome">Nome: </label>
-		<input class="form-control" type="text" id="nome" name="nome">	
+		<label class="col-form-label" for="nome"><strong>Nome</strong></label>
+		<input class="form-control" type="nome" id="nome" name="nome">	
 	</div>
 	<div>
-		<label class="col-form-label" for="nome">email: </label>
+		<label class="col-form-label" for="nome"><strong>Email</strong></label>
 		<input class="form-control" type="email" id="email" name="email">	
 	</div>
 	<div>
-		<label class="col-form-label" for="idade">idade: </label>
+		<label class="col-form-label" for="sexo"><strong>Sexo</strong></label>
+			<select class="form-control" id="sexo" name="sexo">
+				<option value="male">Masculino</option>
+				<option value="female">Feminino</option>
+			</select>
+	</div>
+	<div>
+		<label class="col-form-label" for="idade"><strong>Idade</strong></label>
 		<input class="form-control" type="number" id="idade" name="idade">
 	</div>
 	<div class="form-button mt-4">
