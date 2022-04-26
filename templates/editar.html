@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Edição{% endblock %}
+
+{% block content %}
+<header class="pb-3 mt-0">
+
+	
+	
+</header>
+<form class="mt-3 mb-3" id="form" method="post" action="{{url_for('editar')}}">
+	<img class=" img-fluid" src="{{url_for('static', filename='img/crud-8.png')}}">
+	<h3 class="text-left mt-5">Adicionar Usuário</h3>
+	<div>
+		<label class="col-form-label" for="nome"><strong>Nome</strong></label>
+		<input class="form-control" type="nome" id="nome" name="nome" value='{{perfil.name}}'>	
+	</div>
+	<div>
+		<label class="col-form-label" for="nome"><strong>Email</strong></label>
+		<input class="form-control" type="email" id="email" name="email" value='{{perfil.email}}'>	
+	</div>
+	<div>
+		<label class="col-form-label" for="sexo"><strong>Sexo</strong></label>
+			<select class="form-control" id="sexo" name="sexo" value='{{perfil.sexo}}'>
+				<option value="male">Masculino</option>
+				<option value="female">Feminino</option>
+			</select>
+	</div>
+	<div>
+		<label class="col-form-label" for="idade"><strong>Idade</strong></label>
+		<input class="form-control" type="number" id="idade" name="idade" value='{{perfil.idade}}'>
+	</div>
+    <div>
+		<label class="col-form-label" for="avatar"><strong>Avatar</strong></label>
+		<input class="form-control" type="avatar" id="avatar" name="avatar" value="{{perfil.avatar}}">	
+	</div>
+	<div class="form-button mt-4">
+		<button class="btn btn-primary" name="botao" id="botao" value="{{perfil.id}}" type="submit">Salvar Modificação</button>	
+	</div>
+	
+
+</form>
+
+{% endblock %}

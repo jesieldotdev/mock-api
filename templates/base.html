@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mystyle.css') }}" />
 </head>
 <body>
+  <div class="bg-image"
+  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/images/76.webp');">
+
 	<!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <!-- Container wrapper -->
@@ -87,9 +90,11 @@
           {% endfor %}
         {% endif %}
       {% endwith %}
+          
 	{% block content %} 
-	{% endblock %}
 
+	{% endblock %}
+</div>
     <script type="text/javascript" src="{{ url_for( 'static', filename='js/mdb.min.js') }}"></script>
     <!-- Custom scripts -->
     <script type="text/javascript"></script>

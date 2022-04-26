@@ -6,11 +6,6 @@ import json
 import datetime
 
 app = Flask(__name__)
-nome = 'jesiel'
-sexo = 'male'
-avatar = requests.get(f'https://avatars.dicebear.com/api/{sexo}/{nome}.png')
-print(avatar.text)
-
 
 @app.route('/')
 def index():
@@ -19,14 +14,8 @@ def index():
 
 @app.route('/perfil/<string:perfil_id>', methods=['POST', 'GET'])
 def perfil(perfil_id):
-	perfil_id=perfil_id
-	# for key in data:
-	# 	if key['id'] == perfil_id:
-	# 		perfil = key['name']
 
 	requisicao = requests.put(f'https://625e20a26c48e8761ba572c5.mockapi.io/api/v1/users/{perfil_id}').json()
-	for key in requisicao:
-		print(key)
 	return render_template('perfil.html', perfil=requisicao)
 
 @app.route('/pagina_add', methods=['POST', 'GET'])
@@ -45,7 +34,7 @@ def salvar():
 		
 		
 		try:
-			requisicao = requests.post('https://625e20a26c48e8761ba572c5.mockapi.io/api/v1/users', data=({'name': nome, 'avatar': avatar, 'email': email, 'idade': idade, 'createdAt': date}))
+			requisicao = requests.post('https://625e20a26c48e8761ba572c5.mockapi.io/api/v1/users', data=({'name': nome, 'avatar': avatar, 'email': email, 'sexo': sexo, 'idade': idade, 'createdAt': date}))
 			flash(f'{nome}, {avatar}, {email} {idade} anos', 'success')
 			return redirect(url_for('index'))
 		except:
@@ -63,6 +52,34 @@ def delete_user(user_id):
 		flash(f'{user_id} deletado com sucesso.', 'warning')
 
 	return redirect(url_for('index'))
+
+@app.route('/pagina_editar/<string:user_id>', methods=['GET','POST'])
+def pagina_editar(user_id):
+	requisicao = requests.put(f'https://625e20a26c48e8761ba572c5.mockapi.io/api/v1/users/{user_id}').json()
+	# print(requisicao['name'])
+	return render_template('editar.html', perfil=requisicao)
+
+@app.route('/editar/salvar', methods = ['POST', 'GET'])
+def editar():
+	if request.method == 'POST':
+		nome = request.form['nome']
+		email = request.form['email']
+		idade = request.form['idade']
+		sexo = request.form['sexo']
+		novo_avatar = request.form['avatar']
+		user_id = request.form['botao']
+		date = datetime.datetime.now().strftime('%d/%m/%Y ás %H:%M')
+		if novo_avatar == '':
+			avatar = f'https://avatars.dicebear.com/api/{sexo}/{nome}.png'
+		else:
+			avatar = novo_avatar
+		try:
+			requisicao = requests.put(f'https://625e20a26c48e8761ba572c5.mockapi.io/api/v1/users/{user_id}', data=({'name': nome, 'avatar': avatar, 'email': email, 'sexo': sexo, 'idade': idade, 'createdAt': date}))
+			flash(str(requisicao), 'success')
+		except:
+			flash('Não foi possivel modificar o usuario.', 'danger')
+		return redirect(url_for('index'))
+
 
 
 
